@@ -4,7 +4,6 @@ const Note = require("../models/Note");
 
 //get note/notes
 noteRouter.get("/getnotes", (req, res) => {
-  
     Note.find({}, (err, documents) => {
       if (err) {
         res.status(500).json({
@@ -22,7 +21,6 @@ noteRouter.get("/getnotes", (req, res) => {
   //add note
   noteRouter.post("/newnote", (req, res) => {
     console.log("Note to add: ", req.body);
-    //res.status(200).json({ msg: `Added note: ${req.body.title}` });
     const newNote = new Note({
       title: req.body.title,
       body: req.body.body,
@@ -48,9 +46,6 @@ noteRouter.get("/getnotes", (req, res) => {
   
   //update note
   noteRouter.put("/updatenote/:id", (req, res) => {
-    /*console.log("Note to update: ", req.body);
-    console.log("Note ID", req.params.id);
-    res.status(200).json({ msg: `Updated note: ${req.params.id}` });*/
     Note.findByIdAndUpdate(
       req.params.id,
       { title: req.body.title, body: req.body.body },
@@ -76,8 +71,6 @@ noteRouter.get("/getnotes", (req, res) => {
   
   //delete note
   noteRouter.delete("/deletenote/:id", (req, res) => {
-    /*console.log("Note ID", req.params.id);
-    res.status(200).json({ msg: `Deleted note: ${req.params.id}` });*/
     Note.findByIdAndDelete(req.params.id, (err) => {
       if (err) {
         res.status(500).json({
