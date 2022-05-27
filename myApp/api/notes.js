@@ -4,6 +4,11 @@ const Note = require("../models/Note");
 
 //get note/notes
 noteRouter.get("/getnotes", (req, res) => {
+  const noteArray = [
+      { title: "Note 1", body: "This is a note" },
+      { title: "Note 2", body: "This is also a note" },
+  ];
+
     Note.find({}, (err, documents) => {
       if (err) {
         res.status(500).json({
@@ -13,7 +18,7 @@ noteRouter.get("/getnotes", (req, res) => {
           },
         });
       } else {
-        res.status(200).json({ notes: documents });
+        res.status(200).json({ notes: documents, noteArray });
       }
     });
 });
