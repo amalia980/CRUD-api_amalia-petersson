@@ -4,12 +4,6 @@ const Note = require("../models/Note");
 
 //get note/notes
 noteRouter.get("/getnotes", (req, res) => {
-    // const noteArray = [
-    //   { title: "Note 1", body: "This is a note" },
-    //   { title: "Note 2", body: "This is also a note" },
-    // ];
-    
-    // res.status(200).json({noteArray})
   
     Note.find({}, (err, documents) => {
       if (err) {
@@ -23,10 +17,10 @@ noteRouter.get("/getnotes", (req, res) => {
         res.status(200).json({ notes: documents });
       }
     });
-  });
-  
+});
+
   //add note
-  noteRouter.post("/newnotes", (req, res) => {
+  noteRouter.post("/newnote", (req, res) => {
     console.log("Note to add: ", req.body);
     //res.status(200).json({ msg: `Added note: ${req.body.title}` });
     const newNote = new Note({
